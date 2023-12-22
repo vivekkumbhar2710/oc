@@ -148,15 +148,15 @@ frappe.ui.form.on('Employee OT Calculation', {
 
 
 
-// frappe.ui.form.on('Employee OT Calculation', {
-//     refresh: function(frm) {
-//         // select the first row in the child table
-//         var rows = document.getElementsByClassName("grid-row");
-//             for (var i = 0; i < rows.length; i++) {
-//               rows[i].style.backgroundColor = "#D2E9FB";
-//             }
-//     }
-// });
+frappe.ui.form.on('Employee OT Calculation', {
+    refresh: function(frm) {
+        // select the first row in the child table
+        var rows = document.getElementsByClassName("grid-row");
+            for (var i = 0; i < rows.length; i++) {
+              rows[i].style.backgroundColor = "#D2E9FB";
+            }
+    }
+});
 
 
 // frappe.ui.form.on('EOC Employee LIst', {
