@@ -115,7 +115,9 @@ class EmployeeOTCalculation(Document):
 				# "overtime_hrs": str(employee_id_dict[data]['overtime_hrs']),
 				"overtime_rate": employee_id_dict[data]['overtime_rate'],
 				"employee_overtime_hrs": employee_id_dict[data]['employee_overtime_hrs'],
-				"total_overtime_amount": employee_id_dict[data]['total_amount']
+				"total_overtime_amount": employee_id_dict[data]['total_amount'],
+				"start_date":self.from_date,
+				"end_date":self.to_date
 			})
 
 	

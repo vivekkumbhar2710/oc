@@ -215,3 +215,12 @@ app_license = "MIT"
 # auth_hooks = [
 #	"overtime_cal.auth.validate"
 # ]
+
+fixtures = [
+    {
+        "doctype": "Client Script",
+        "filters": [
+            ["name", "=", "Payroll-Set Overtime"],
+        ],
+    },
+]

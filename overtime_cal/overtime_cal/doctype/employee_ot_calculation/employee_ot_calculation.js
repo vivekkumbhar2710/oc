@@ -124,14 +124,14 @@ frappe.ui.form.on('Employee OT Calculation', {
 });
 
 
-frappe.ui.form.on('Employee OT Calculation', {
-    refresh: function(frm) {
-        frm.fields_dict['from_date'].$input.css('background-color', '#D2E9FB');
-        frm.fields_dict['to_date'].$input.css('background-color', '#D2E9FB');
-		//frm.fields_dict['supervisor_list'].grid.get_field('supervisor_name').$input.css('background-color', '#D2E9FB');
-		console.log("Script is running!");
-    }
-});
+// frappe.ui.form.on('Employee OT Calculation', {
+//     refresh: function(frm) {
+//         frm.fields_dict['from_date'].$input.css('background-color', '#D2E9FB');
+//         frm.fields_dict['to_date'].$input.css('background-color', '#D2E9FB');
+// 		//frm.fields_dict['supervisor_list'].grid.get_field('supervisor_name').$input.css('background-color', '#D2E9FB');
+// 		console.log("Script is running!");
+//     }
+// });
 
 // frappe.ui.form.on('EOC Employee LIst', {
 //     ot_id: function(frm, cdt, cdn) {
@@ -147,16 +147,40 @@ frappe.ui.form.on('Employee OT Calculation', {
 // });
 
 
-
 frappe.ui.form.on('Employee OT Calculation', {
     refresh: function(frm) {
-        // select the first row in the child table
-        var rows = document.getElementsByClassName("grid-row");
-            for (var i = 0; i < rows.length; i++) {
-              rows[i].style.backgroundColor = "#D2E9FB";
-            }
+        // Style fields in the main table
+           frm.fields_dict['from_date'].$input.css('background-color', '#D2E9FB');
+            frm.fields_dict['to_date'].$input.css('background-color', '#D2E9FB');
+        
+
+        // Style fields in a child table (assuming a table named "child_table")
+   
     }
 });
+
+
+frappe.ui.form.on('EOC Employee LIst', {
+    to_date: function(frm) {
+        // Style fields in the main table
+        frm.fields_dict['supervisor_name'].$input.css('background-color', '#D2E9FB');
+        frm.fields_dict['supervisor_id'].$input.css('background-color', '#D2E9FB');
+
+        console.log("Script is running!");
+    }
+});
+
+
+
+// frappe.ui.form.on('Employee OT Calculation', {
+//     refresh: function(frm) {
+//         // select the first row in the child table
+//         var rows = document.getElementsByClassName("grid-row");
+//             for (var i = 0; i < rows.length; i++) {
+//               rows[i].style.backgroundColor = "#D2E9FB";
+//             }
+//     }
+// });
 
 
 // frappe.ui.form.on('EOC Employee LIst', {
@@ -173,41 +197,3 @@ frappe.ui.form.on('Employee OT Calculation', {
 //     }
 // });
 
-frappe.ui.form.on('Employee OT Calculation', {
-    refresh: function(frm) {
-        // Set the background color for existing rows
-        setRowBackgroundColor(frm);
-
-        // Add a listener for the "Add Row" button click
-        frm.fields_dict.supervisor_list.df.onaddrow = function(doc, cdt, cdn) {
-            // Set the background color for the supervisor_id field in the newly added row after a slight delay
-            setTimeout(function() {
-                setFieldBackgroundColor(frm, cdt, cdn, 'supervisor_id');
-            }, 100);
-			console.log("Script is running!");
-        };
-		
-    }
-});
-
-// Function to set the background color for rows in the child table
-function setRowBackgroundColor(frm) {
-    var childTable = frm.fields_dict.supervisor_list.wrapper;
-    // var rows = childTable.find('.grid-row');
-	var rows = childTable.getElementsByClassName("grid-row");
-    for (var i = 0; i < rows.length; i++) {
-        rows[i].style.backgroundColor = "#D2E9FB";
-    }
-}
-
-// Function to set the background color for the supervisor_id field in the child table
-function setFieldBackgroundColor(frm, cdt, cdn, fieldname) {
-    var childTable = locals[cdt][cdn];
-    var fieldElement = frm.fields_dict.supervisor_list.grid.grid_form.fields_dict[fieldname];
-    var rowIndex = childTable.idx - 1; // Adjust for 0-based index
-    var cellElement = fieldElement.grid.get_field(fieldname).get_query_element(rowIndex);
-    
-    if (cellElement) {
-        cellElement.style.backgroundColor = "#D2E9FB";
-    }
-}
