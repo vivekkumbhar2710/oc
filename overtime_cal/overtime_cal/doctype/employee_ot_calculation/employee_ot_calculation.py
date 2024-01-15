@@ -15,15 +15,14 @@ class EmployeeOTCalculation(Document):
 		if self.from_date and self.to_date:
 			doc = frappe.get_all("OT Form", 
 							filters={"date": ["between", [self.from_date, self.to_date]]},
-							fields=["name","supervisor__id","supervisor_name","date"],)
+							fields=["name","supervisor_id","supervisor_name","date"],)
 			if(doc):
 				for d in doc:
 					self.append('supervisor_list', {
 												"ot_id":d.name,
-												"supervisor_id":d.supervisor__id,
+												"supervisor_id":d.supervisor_id,
 												"supervisor_name":d.supervisor_name,
 												"date":d.date })
-									
 	@frappe.whitelist()
 	def checkall(self):
 		children = self.get('supervisor_list')
