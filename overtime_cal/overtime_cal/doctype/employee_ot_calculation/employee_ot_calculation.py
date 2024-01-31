@@ -41,22 +41,11 @@ class EmployeeOTCalculation(Document):
 				emp = frappe.get_all("Child OT Form", 
 									filters={"parent": i.ot_id},
 									fields=["worker_name","employee_id","employee_overtime_hrs"])  
-				# ,"overtime_hrs"
-				
 				for e in emp:	
 					rate = frappe.get_value("Employee",{"name":e.employee_id},
 							["custom_employee_overtime_rate"])
-					# overtime_hours = time_diff_in_hours(str(e.overtime_hrs), "00:00:00")
-					overtime_hours = e.employee_overtime_hrs
-					# total_amount = employee_overtime_hrs * float(rate)
-					# if overtime_hours >= 0.5:
 				
-					# 	total_amount = overtime_hours * float(rate)
-					
-					# else:
-						
-					# 	total_amount = 0
-
+					overtime_hours = e.employee_overtime_hrs
 					if overtime_hours >= 0.50:
 				
 						total_amount = overtime_hours * float(rate)
